@@ -5,7 +5,9 @@ export default function Home() {
 
   const testAPI = async () => {
     try {
-      const res = await fetch('http://localhost:3001/api/test')
+      // Use environment variable or fallback to localhost
+      const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+      const res = await fetch(`${API_URL}/api/test`)
       const data = await res.json()
       setMessage(data.message)
     } catch (err) {
