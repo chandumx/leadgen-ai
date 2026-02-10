@@ -1,23 +1,12 @@
-# Use Node.js 18
 FROM node:18-alpine
-
-# Set working directory
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
+# Copy from backend folder
+COPY backend/package*.json ./
 RUN npm install
 
-# Copy all project files
-COPY . .
+# Copy all backend files
+COPY backend/ ./
 
-# Build the app (for Next.js)
-RUN npm run build
-
-# Expose the port
 EXPOSE 3000
-
-# Start the app
 CMD ["npm", "start"]
